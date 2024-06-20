@@ -41,7 +41,7 @@ function Table() {
      
      setcurrentyear(employees[index].work_year);
   } 
-  {console.log(currentyear)}
+  console.log(currentyear)
 
 
 
