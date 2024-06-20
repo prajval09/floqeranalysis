@@ -72,5 +72,5 @@ app.listen(8000, () => {
   console.log(`Server running on process.env.PORT ${process.env.PORT}`);
 });
 
-
+module.exports = app;
 
