@@ -1,6 +1,4 @@
-import React from 'react';
-import logo from './logo.svg';
-import Main from './Pages/Main';
+
 import './index.css';
 import { Outlet } from 'react-router-dom';
 import Left from './Pages/Left/Left';

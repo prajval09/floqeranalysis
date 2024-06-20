@@ -1,6 +1,4 @@
-import React from 'react'
-import Left from './Left/Left'
-import Table from './Right/Table'
+
 import Vis from './Right/Vis'
 function Main() {
   return (

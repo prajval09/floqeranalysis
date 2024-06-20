@@ -1,7 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Table from '../Right/Table'
-import Vis from '../Right/Vis'
 function Options() {
   return (
     <div className='m-10 '>

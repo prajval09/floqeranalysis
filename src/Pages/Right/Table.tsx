@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Detailedtable from './Detailedtable'
-import Vis from './Vis';
-const indicator = false
 interface Employee {
   work_year: number;
   total_jobs: number;
