@@ -3,18 +3,20 @@ const mysql = require("mysql");
 const cors = require("cors");
 const { log } = require("console");
 
+require('dotenv').config()
+
 const app = express();
-const port = 8000;
+// const process.env.PORT = 8000;
 
 
 app.use(cors());
 
 const db = mysql.createConnection({
-  host: 'localhost', 
-  user: 'root',
-//   password: 'prajval',
-  database: 'dataset',
-  port: 3306 
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  // password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT,
 });
 
 db.connect((error) => {
@@ -26,7 +28,7 @@ db.connect((error) => {
 
 
 
-app.get('/api/employees/yearwise/:year',async(req,res) =>{
+app.get('/api/employees/yearwise/:year',(req,res) =>{
   console.log(req.params.year);
   const sqlq = `select job_title,count(job_title) as total_jobs from employee where work_year =${req.params.year}  group by job_title`
   db.query(sqlq,(err,result)=>{
@@ -35,12 +37,13 @@ app.get('/api/employees/yearwise/:year',async(req,res) =>{
     }
     res.json(result);
   })
+  
+})
 
 
 
-
-app.get('/api/employees/:field/:flag', async(req, res) => {
-  // console.log(req.params.flag);
+app.get('/api/employees/:field/:flag', (req, res) => {
+  console.log(req.params.flag);
   const p = req.params.flag==="true"?"asc":"desc";
   const sql = `select work_year,count(work_year) as total_jobs,(salary) as avg from employee group by work_year order by ${req.params.field} ${p}`;
   // console.log(p);
@@ -53,7 +56,6 @@ app.get('/api/employees/:field/:flag', async(req, res) => {
 });
 
 
-})
 
 
 app.get('/api/employees/avg-salary', (req, res) => {
@@ -66,6 +68,9 @@ app.get('/api/employees/avg-salary', (req, res) => {
     });
   });
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+app.listen(8000, () => {
+  console.log(`Server running on process.env.PORT ${process.env.PORT}`);
 });
+
+
+
